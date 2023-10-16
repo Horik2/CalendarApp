@@ -1,0 +1,21 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./frontend/KalendarzZmianowyFront-main
+    ports:
+      - "80:80"
+
+  backend:
+    build:
+      context: ./backend/kalendarz-zmianowy-master
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    container_name: CalendarMongoContainer
+    ports:
+      - "27017:27017"
