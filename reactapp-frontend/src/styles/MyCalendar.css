@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: rgb(246, 225, 176);
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.calendar {
+  padding: 20px;
+  background-color: rgb(67, 85, 133);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 95%;
+}
+
+.calendar.side-panel-open {
+  width: 67%;
+}
+
+.calendar.side-panel-closed {
+  width: 95%;
+}
+
+.react-calendar {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  font-size: 24px;
+  /* background-color: rgb(246, 225, 176); */
+  background-color: #fff;
+}
+
+.react-calendar__tile {
+  margin: 0;
+  padding: 0;
+  height: 14vmin;
+  width: 15vmin;
+  font-size: 120%;
+  font-weight: bold;
+  background-color: #fff;
+}
+
+.react-calendar__navigation{
+  margin: 15px;
+}
+.react-calendar__navigation button {
+  color: #000;
+  min-width: 44px;
+  background: none;
+  font-size: 38px;
+}
+
+.react-calendar__navigation button:hover {
+  background-color: rgb(220, 207, 175);
+}
+
+.react-calendar__navigation button:disabled {
+  background-color: rgb(246, 225, 176);
+}
+
+/* Dodatkowe style dla kwadratów w kalendarzu */
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background: rgb(67, 85, 133);
+  color: #fff;
+}
+
+.react-calendar__tile--now,
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background-color: rgb(47,79,79);
+  color: #fff;
+}
+
+.react-calendar__tile--active,
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: rgb(54, 48, 98);
+  color: #fff;
+}
+/* Wprowadź styl dla nazw miesięcy w kalendarzu */
+.react-calendar__navigation__label__labelText{
+  font-weight: bold;
+  text-transform: capitalize;
+} 
+
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.75em;
+  background-color: rgb(67, 85, 133); 
+  color: #fff;
+  padding: 5px 0;
+}
+
+/* Wprowadź styl dla nazw miesięcy w kalendarzu roku */
+.react-calendar__year-view__months__month {
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 32px;
+} 
+
+/* Dodaj odpowiednie kolory dla różnych typów wydarzeń */
+.workEvent {
+  background-color: rgb(158, 0, 0); 
+}
+
+.vacationEvent {
+  background-color: rgb(227, 227, 62); 
+}
+
+.businessTripEvent {
+  background-color: rgb(15, 116, 15);
+}
+
+.sickLeaveEvent {
+  background-color: rgb(82, 187, 193); 
+}

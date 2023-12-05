@@ -1,0 +1,49 @@
+.thirdDiv{
+    width: 5%;
+}
+.exitPanel {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;  
+}
+
+.exitPanel{
+    background-color: rgb(67, 85, 133);
+    /* background-color: rgb(245, 232, 199); */
+}
+
+.exitPanel:hover{
+    background-color: rgb(54, 48, 98); 
+    /* background-color: rgb(220, 207, 175); */
+    transition: background-color 0.8s ease;  
+}
+  
+.exitPanel img {
+    width: 40px;
+    height: 32px;
+    margin: auto;
+}
+  
+.hamburgerPanel{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: rgb(67, 85, 133);
+    /* background-color: rgb(245, 232, 199); */
+}
+
+.hamburgerPanel:hover{
+    background-color: rgb(54, 48, 98);
+    /* background-color: rgb(220, 207, 175); */
+    transition: background-color 0.8s ease;   
+}
+
+.hamburgerPanel img {
+    width: 40px;
+    height: 32px;
+    margin: auto;
+}

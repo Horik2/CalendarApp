@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  frontend-service:
+    container_name: reactapp-frontend
+    image: reactapp-image:latest
+    ports:
+      - "3000:3000"
+  backend-service:
+      container_name: flaskapp-backend
+      image: flask:latest
+      ports:
+        - "5000:5000"
+  mongodb:
+    image: mongo
+    container_name: MongoDb
+    ports:
+      - "27018:27017"
