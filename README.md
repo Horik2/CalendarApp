@@ -34,11 +34,15 @@ Zalecany system operacyjny: Windows 10
 3. Otworzyć folder główny projektu i komendy docker-compose up (np. w wierszu poleceń)
 
 Po wykonaniu powyższych kroków można otworzyć przeglądarkę gdzie można uzyskać dostęp do aplikacji za pomocą linków:
+
 http://localhost:3000/ - interfejs aplikacji (frontend)
+
 http://localhost:5000/apidocs/ - dokumentacja swagger (backend)
+
 aby uzyskać dostęp do bazy danych można skorzystać z narzędzia MongoDbCompass gdzie należy wkleić w okno URI:
 
 mongodb+srv://ProjectAdmin:Parano55@calendarprojectcluster.usy8q0s.mongodb.net/?retryWrites=true&w=majority
+
 Następnie klikamy connect, w ten sposób dostaniemy się do zawartości bazy danych
 
 
