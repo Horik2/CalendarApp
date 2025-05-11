@@ -1,60 +1,54 @@
 pipeline {
     agent any
-
+    
     options {
-        // Unikaj współbieżnych budowań
         disableConcurrentBuilds()
-        
-        // Pokazuj czas trwania każdego etapu
         timestamps()
     }
 
     environment {
-        // Ustaw zmienne środowiskowe (dostosuj do swojego projektu)
-        PROJECT_NAME = "FilmApp"
+        PROJECT_NAME = "CalendarApp"  // Zmienione z FilmApp na CalendarApp
+        // Upewnij się, że używasz poprawnej nazwy użytkownika GitHub
+        REPO_URL = "https://github.com/Hork2/CalendarApp.git" 
     }
 
     stages {
-        // Etap 1: Pobranie kodu z repozytorium
         stage('Checkout') {
             steps {
                 script {
-                    echo "🔄 Pobieranie kodu z repozytorium ${PROJECT_NAME}..."
-                    checkout scm
+                    echo "🔄 Pobieranie kodu z repozytorium ${env.PROJECT_NAME}..."
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: '*/main']],
+                        userRemoteConfigs: [[url: env.REPO_URL]]
+                    ])
                 }
             }
         }
 
-        // Etap 2: Instalacja zależności (dostosuj do swojej technologii)
         stage('Install Dependencies') {
             steps {
                 script {
                     echo "📦 Instalowanie zależności..."
+                    // Odkomentuj odpowiednią sekcję dla Twojego projektu:
                     
-                    // Przykłady dla różnych technologii (odkomentuj odpowiednią sekcję):
-                    
-                    // Dla Node.js:
+                    // Node.js:
                     // sh 'npm install'
                     
-                    // Dla Maven (Java):
+                    // Maven:
                     // sh 'mvn clean install -DskipTests'
                     
-                    // Dla Python:
+                    // Python:
                     // sh 'pip install -r requirements.txt'
-                    
-                    // Dla .NET:
-                    // sh 'dotnet restore'
                 }
             }
         }
 
-        // Etap 3: Budowanie projektu
         stage('Build') {
             steps {
                 script {
                     echo "🏗️ Budowanie projektu..."
-                    
-                    // Przykłady budowania:
+                    // Odkomentuj odpowiednią komendę:
                     
                     // Node.js:
                     // sh 'npm run build'
@@ -62,53 +56,39 @@ pipeline {
                     // Maven:
                     // sh 'mvn package'
                     
-                    // .NET:
-                    // sh 'dotnet build'
+                    // Python:
+                    // sh 'python setup.py build'
                 }
             }
         }
 
-        // Etap 4: Uruchomienie testów
         stage('Test') {
             steps {
                 script {
                     echo "🔍 Uruchamianie testów..."
+                    // Odkomentuj i dostosuj ścieżki do raportów:
                     
-                    // Przykłady uruchamiania testów:
-                    
-                    // Node.js (Jest/Mocha):
+                    // Node.js (Jest):
                     // sh 'npm test'
+                    // junit '**/junit.xml' 
                     
                     // Maven:
                     // sh 'mvn test'
+                    // junit '**/target/surefire-reports/*.xml'
                     
                     // Python pytest:
-                    // sh 'pytest'
-                }
-            }
-            
-            post {
-                // Zawsze generuj raport testów
-                always {
-                    junit '**/target/surefire-reports/*.xml' // Dla Maven
-                    // archiveArtifacts artifacts: '**/test-results.xml', allowEmptyArchive: true
+                    // sh 'pytest --junitxml=test-results.xml'
+                    // junit '**/test-results.xml'
                 }
             }
         }
     }
 
     post {
-        // Akcje wykonane po zakończeniu pipeline'u
         always {
-            echo "✅ Pipeline ${PROJECT_NAME} zakończony - status: ${currentBuild.result ?: 'SUCCESS'}"
+            echo "✅ Pipeline ${env.PROJECT_NAME} zakończony - status: ${currentBuild.result ?: 'SUCCESS'}"
         }
         
-        success {
-            slackSend(color: 'good', message: "Build ${PROJECT_NAME} #${env.BUILD_NUMBER} zakończony sukcesem!")
-        }
-        
-        failure {
-            slackSend(color: 'danger', message: "Build ${PROJECT_NAME} #${env.BUILD_NUMBER} nie powiódł się!")
-        }
+        // Usunięte slackSend, chyba że masz zainstalowany plugin Slack
     }
 }
